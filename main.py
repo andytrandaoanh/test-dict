@@ -2,9 +2,6 @@ import os, sys
 import json
 
 
-
-
-
 def loadData(inPath):
 	#print('inPath:', inPath, 'dbDir:', dbDir, 'bookID:', bookID)
 	#print(pathNin, pathSin)
@@ -24,4 +21,4 @@ pathIn =  os.path.join(pathCur, "data",  "a.json")
 #print(pathIn)
 dictData = loadData(pathIn)
 
-print(dictData['a cappella'])
+print(dictData['florid'])

@@ -19,12 +19,13 @@ def readTextFile(filepath):
 	    print(e)  
 
 def getIncrementPath(incNumber, outDir):
+	PADDING_ZEROS = 8
 	JSON_HEADER = "Dict_Extract"
 	TEXT_HEADER = "Handling_Status"
 	JSON_EXT = ".json"
 	TEXT_EXT = ".txt"
 	incString = str(incNumber)
-	increment = incString.zfill(4)
+	increment = incString.zfill(PADDING_ZEROS)
 	
 	normal_path =  os.path.join(outDir, JSON_HEADER + increment + JSON_EXT) 
 	status_path =  os.path.join(outDir, TEXT_HEADER + increment + TEXT_EXT) 

@@ -1,4 +1,4 @@
-import time 	
+import sys, time 	
 import requests, json
 import system_handler as sysHand
 
@@ -55,7 +55,7 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 #myWord = getSingleWord('a')
 #print(myWord)
 if __name__ == '__main__':
-	START_NUMBER = 3800
+	START_NUMBER = 4500
 	STOP_NUMBER = START_NUMBER + 99
 	PATH_IN = "E:/FULLTEXT/SPECIALTY/Full_Words_List.txt"
 	PATH_OUT = "E:/FULLTEXT/GOOGLE/"

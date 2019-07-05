@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import time, sys 	
+=======
+import sys, time 	
+>>>>>>> 63466e5b5c00b6bbd5e67e9b2278ee09a911e92c
 import requests, json
 import system_handler as sysHand
 
@@ -40,7 +44,7 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 	for i in range(START_NUMBER, STOP_NUMBER):
 	    word = wordList[i]
 	    (data, message) = getSingleWord(word)
-	    print('item:', i, message)
+	    print(i, ':',  message)
 	    status.append(message)
 	    if (data):
 	    	results.append(data)
@@ -52,6 +56,7 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 
 
 
+<<<<<<< HEAD
 
 
 if __name__ == "__main__":
@@ -60,6 +65,20 @@ if __name__ == "__main__":
 	PATH_IN = "E:/FULLTEXT/SPECIALTY/Full_Words_List.txt"
 	PATH_OUT = "E:/FULLTEXT/GOOGLE/"
 
+=======
+#myWord = getSingleWord('a')
+#print(myWord)
+if __name__ == '__main__':
+	START_NUMBER = 4500
+	STOP_NUMBER = START_NUMBER + 99
+	PATH_IN = "E:/FULLTEXT/SPECIALTY/Full_Words_List.txt"
+	PATH_OUT = "E:/FULLTEXT/GOOGLE/"
+
+
+	RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT)
+	sysHand.openDir(PATH_OUT)
+	sys.exit()
+>>>>>>> 63466e5b5c00b6bbd5e67e9b2278ee09a911e92c
 
 	RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT)
 

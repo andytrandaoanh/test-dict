@@ -1,4 +1,4 @@
-import time 	
+import time, sys 	
 import requests, json
 import system_handler as sysHand
 
@@ -40,11 +40,11 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 	for i in range(START_NUMBER, STOP_NUMBER):
 	    word = wordList[i]
 	    (data, message) = getSingleWord(word)
-	    print(message)
+	    print('item:', i, message)
 	    status.append(message)
 	    if (data):
 	    	results.append(data)
-	    time.sleep(5)
+	    time.sleep(3)
 
 	sysHand.writeDataToJSON(results, pathDataOut)
 	sysHand.writeListToFile(status, pathStatusOut)
@@ -52,15 +52,17 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 
 
 
-#myWord = getSingleWord('a')
-#print(myWord)
-
-START_NUMBER = 1400
-STOP_NUMBER = 1499
-PATH_IN = "E:/FULLTEXT/SPECIALTY/Full_Words_List.txt"
-PATH_OUT = "E:/FULLTEXT/GOOGLE/"
 
 
-RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT)
+if __name__ == "__main__":
+	START_NUMBER = 3600
+	STOP_NUMBER = START_NUMBER + 99
+	PATH_IN = "E:/FULLTEXT/SPECIALTY/Full_Words_List.txt"
+	PATH_OUT = "E:/FULLTEXT/GOOGLE/"
 
+
+	RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT)
+
+	sysHand.openDir(PATH_OUT)
+	sys.exit()
 

@@ -24,7 +24,7 @@ def getIncrementPath(incNumber, outDir):
 	JSON_EXT = ".json"
 	TEXT_EXT = ".txt"
 	incString = str(incNumber)
-	increment = incString.zfill(4)
+	increment = incString.zfill(8)
 	
 	normal_path =  os.path.join(outDir, JSON_HEADER + increment + JSON_EXT) 
 	status_path =  os.path.join(outDir, TEXT_HEADER + increment + TEXT_EXT) 

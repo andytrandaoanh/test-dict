@@ -28,7 +28,8 @@ def getSingleWord(word):
 
 
 
-def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
+def RunCode(START_NUMBER, PATH_IN, PATH_OUT):
+	STOP_NUMBER = START_NUMBER + 100
 
 	pathDataOut, pathStatusOut = sysHand.getIncrementPath(START_NUMBER, PATH_OUT)
 
@@ -50,13 +51,11 @@ def RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT):
 	sysHand.writeListToFile(status, pathStatusOut)
 
 
-
 if __name__ == '__main__':
-	START_NUMBER = 7200
-	STOP_NUMBER = START_NUMBER + 100
+	START_NUMBER = 23600
 	PATH_IN = "E:/FULLTEXT/SPECIALTY/NLTK_Words_List.txt"
 	PATH_OUT = "E:/FULLTEXT/GOOGLE/"
-	RunCode(START_NUMBER, STOP_NUMBER, PATH_IN, PATH_OUT)
+	RunCode(START_NUMBER, PATH_IN, PATH_OUT)
 	sysHand.openDir(PATH_OUT)
 	sys.exit()
 

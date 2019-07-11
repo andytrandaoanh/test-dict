@@ -102,3 +102,4 @@ def loadDictionaries(dirDic):
 def writeDataToJSON(dataIn, pathOut):
 	with open(pathOut, 'w', encoding ="utf-8") as outfile:  
 		json.dump(dataIn, outfile)
+

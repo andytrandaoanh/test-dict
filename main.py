@@ -1,24 +1,22 @@
 import os, sys
 import json
+from alternate_agent import getRamdomUserAgent
+from alternate_proxy import getRamdomProxy
+import requests
+
+def startScrape():
+	proxy = getRamdomProxy()
+	print('using proxy', proxy)
+	agent = getRamdomUserAgent()
+	#print('proxy', newProxy, 'agent', newAgent)
+	headers = {'User-Agent': agent}
+	url = 'https://httpbin.org/ip'
+	response = requests.get(url, proxies={"http": proxy, "https": proxy}, headers = {'User-Agent': agent})
+	print('ip used', response.json())
+	url = 'https://httpbin.org/user-agent'
+	response = requests.get(url, proxies={"http": proxy, "https": proxy}, headers = headers)
+	print('agent used', response.json())
 
 
-def loadData(inPath):
-	#print('inPath:', inPath, 'dbDir:', dbDir, 'bookID:', bookID)
-	#print(pathNin, pathSin)
-	jsonPath = inPath
-	#print(jsonPath)
-	with open(jsonPath) as f:
-		entries = json.load(f)
-	return entries
-	#dbData = []
-	#for sentence in sentences:
-	#	temp = sentence[0]
-	#	dbData.append((int(bookID), temp['sent_cont'], temp['sent_num']))
-		
-
-pathCur = os.path.dirname(os.path.abspath(__file__))
-pathIn =  os.path.join(pathCur, "data",  "a.json") 
-#print(pathIn)
-dictData = loadData(pathIn)
-
-print(dictData['florid'])
+if __name__ == "__main__":
+	startScrape()

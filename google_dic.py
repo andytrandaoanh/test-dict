@@ -35,10 +35,11 @@ def getSingleWord(word, proxy, agent):
 
 def RunCode(START_NUMBER, session, headers):
 	PATH_IN = "E:/FULLTEXT/SPECIALTY/NLTK_Words_List.txt"
-	PATH_OUT = "E:/FULLTEXT/GOOGLE/RAW"
+	PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
+	PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
 	STOP_NUMBER = START_NUMBER + 100
 
-	pathDataOut, pathStatusOut = sysHand.getIncrementPath(START_NUMBER, PATH_OUT)
+	pathDataOut, pathStatusOut = sysHand.getIncrementPath(START_NUMBER, PATH_DATA_OUT, PATH_LOG_OUT)
 
 	wordList = sysHand.getWordFromTextFile(PATH_IN)
 
@@ -59,7 +60,7 @@ def RunCode(START_NUMBER, session, headers):
 
 
 if __name__ == '__main__':
-	START_NUMBER = 39100
+	START_NUMBER = 39900
 	STOP_NUMBER	 = START_NUMBER + 20000
 	STEP_NUMBER = 100
 	for i in range(START_NUMBER, STOP_NUMBER, STEP_NUMBER):

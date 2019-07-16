@@ -18,17 +18,19 @@ def readTextFile(filepath):
 	except Exception as e:
 	    print(e)  
 
-def getIncrementPath(incNumber, outDir):
+
+
+def getIncrementPath(incNumber, dataOutDir, logOutDir):
 	PADDING_ZEROS = 8
 	JSON_HEADER = "Dict_Extract"
-	TEXT_HEADER = "Handling_Status"
+	TEXT_HEADER = "Google_Scraping_Status_Log_"
 	JSON_EXT = ".json"
 	TEXT_EXT = ".txt"
 	incString = str(incNumber)
 	increment = incString.zfill(PADDING_ZEROS)
 	
-	normal_path =  os.path.join(outDir, JSON_HEADER + increment + JSON_EXT) 
-	status_path =  os.path.join(outDir, TEXT_HEADER + increment + TEXT_EXT) 
+	normal_path =  os.path.join(dataOutDir, JSON_HEADER + increment + JSON_EXT) 
+	status_path =  os.path.join(logOutDir, TEXT_HEADER + increment + TEXT_EXT) 
 
 	return(normal_path, status_path)
 

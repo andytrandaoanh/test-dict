@@ -39,12 +39,27 @@ def RunCode(START_NUMBER, proxies, headers):
 	PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
 	STOP_NUMBER = START_NUMBER + 100
 
+	print('starting at:', START_NUMBER)
+	print('using agent:', headers['User-Agent'])
+	urlTest = "http://icanhazip.com"
+	resTest = requests.get(urlTest, proxies=proxies, headers=headers)
+	print('using IP:', resTest.text)
+
+
+
 	pathDataOut, pathStatusOut = sysHand.getIncrementPath(START_NUMBER, PATH_DATA_OUT, PATH_LOG_OUT)
 
 	wordList = sysHand.getWordFromTextFile(PATH_IN)
-
+	
 	results = []
 	status = []
+	dateStamp = sysHand.getDateStamp()
+	status.append('Starting scraping Google at  ' + dateStamp)
+	status.append('Starting scraping at index ' + str(START_NUMBER))
+	status.append('Starting scraping using IP ' + resTest.text)
+	status.append('Starting scraping using agent ' + headers['User-Agent'])
+
+
 
 	for i in range(START_NUMBER, STOP_NUMBER):
 	    word = wordList[i]
@@ -56,27 +71,22 @@ def RunCode(START_NUMBER, proxies, headers):
 	    time.sleep(3)
 
 	sysHand.writeDataToJSON(results, pathDataOut)
+	dateStamp = sysHand.getDateStamp()
+	status.append('Ending scraping Google at ' + dateStamp)
 	sysHand.writeListToFile(status, pathStatusOut)
 
 
 if __name__ == '__main__':
-	START_NUMBER = 40100
+	START_NUMBER = 40700
 	STOP_NUMBER	 = START_NUMBER + 20000
 	STEP_NUMBER = 100
 
 	proxies = startPrivateProxy()
 
-	for i in range(START_NUMBER, STOP_NUMBER, STEP_NUMBER):
-		print('starting at:', i)
-		user_agent = getRamdomUserAgent()
-		print('using agent:', user_agent)
+	for i in range(START_NUMBER, STOP_NUMBER, STEP_NUMBER):		
+		user_agent = getRamdomUserAgent()		
 		headers = {'User-Agent': user_agent}
-		#test ip 
-		urlTest = "http://icanhazip.com"
-		resTest = requests.get(urlTest, proxies=proxies, headers=headers)
-		print('using IP:', resTest.text)
-
 		RunCode(i, proxies, headers)
 		time.sleep(10)
-		#initNumber 
+		
 		

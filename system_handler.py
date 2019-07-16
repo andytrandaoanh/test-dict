@@ -1,4 +1,5 @@
 import os, sys, json
+import datetime
 
 
 def openDir(targetdir):
@@ -105,3 +106,7 @@ def writeDataToJSON(dataIn, pathOut):
 	with open(pathOut, 'w', encoding ="utf-8") as outfile:  
 		json.dump(dataIn, outfile)
 
+
+def getDateStamp():
+	getDateStamp = str(datetime.datetime.now())
+	return(getDateStamp)

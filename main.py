@@ -35,8 +35,13 @@ def getSingleWord(word, proxies, headers):
 
 def RunCode(START_NUMBER, proxies, headers):
 	PATH_IN = "E:/FULLTEXT/SPECIALTY/NLTK_Words_List.txt"
-	PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
-	PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
+	#For Home only
+	#PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
+	#PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
+	
+	#for sharing with office
+	PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+	PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
 	STOP_NUMBER = START_NUMBER + 100
 
 	print('starting at:', START_NUMBER)
@@ -77,7 +82,7 @@ def RunCode(START_NUMBER, proxies, headers):
 
 
 if __name__ == '__main__':
-	START_NUMBER = 40700
+	START_NUMBER = 62300
 	STOP_NUMBER	 = START_NUMBER + 20000
 	STEP_NUMBER = 100
 

@@ -34,14 +34,24 @@ def getSingleWord(word, proxies, headers):
 
 
 def RunCode(START_NUMBER, proxies, headers):
-	PATH_IN = "E:/FULLTEXT/SPECIALTY/NLTK_Words_List.txt"
-	#For Home only
+	PATH_IN = "E:/FULLTEXT/DICTIONARY/SPECIALTY/NLTK_Words_List.txt"
+	
+	#LOCAL Home or Office only
 	#PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
 	#PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
 	
-	#for sharing with office
-	PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
-	PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+	#HOME: for sharing with office
+	#PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+	#PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+
+	#OFFICE: for sharing with home orm office
+
+	PATH_DATA_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+	PATH_LOG_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+
+
+
+
 	STOP_NUMBER = START_NUMBER + 100
 
 	print('starting at:', START_NUMBER)
@@ -82,7 +92,7 @@ def RunCode(START_NUMBER, proxies, headers):
 
 
 if __name__ == '__main__':
-	START_NUMBER = 62300
+	START_NUMBER = 80700
 	STOP_NUMBER	 = START_NUMBER + 20000
 	STEP_NUMBER = 100
 

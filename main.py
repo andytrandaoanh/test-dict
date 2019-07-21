@@ -34,14 +34,14 @@ def getSingleWord(word, proxies, headers):
 
 
 def RunCode(START_NUMBER, proxies, headers):
-	PATH_IN = "E:/FULLTEXT/SPECIALTY/NLTK_Words_List.txt"
+	PATH_IN = "E:/FULLTEXT/DICTIONARY/SPECIALTY/NLTK_Words_List.txt"
 	#For Home only
-	#PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
-	#PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
+	PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
+	PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
 	
 	#for sharing with office
-	PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
-	PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+	#PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+	#PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
 	STOP_NUMBER = START_NUMBER + 100
 
 	print('starting at:', START_NUMBER)
@@ -80,10 +80,10 @@ def RunCode(START_NUMBER, proxies, headers):
 	status.append('Ending scraping Google at ' + dateStamp)
 	sysHand.writeListToFile(status, pathStatusOut)
 
-
-if __name__ == '__main__':
-	START_NUMBER = 62300
-	STOP_NUMBER	 = START_NUMBER + 20000
+def main(startNumber):
+	#START_NUMBER = 107200
+	START_NUMBER = startNumber 
+	STOP_NUMBER	 = START_NUMBER + 50000
 	STEP_NUMBER = 100
 
 	proxies = startPrivateProxy()
@@ -93,5 +93,15 @@ if __name__ == '__main__':
 		headers = {'User-Agent': user_agent}
 		RunCode(i, proxies, headers)
 		time.sleep(10)
-		
+
+
+if __name__ == '__main__':
+	#print ('Number of arguments:', len(sys.argv), 'arguments.')
+	#print ('Argument List:', str(sys.argv))
+	try:
+		startNumber = int(sys.argv[1])
+		main(startNumber)
+	except:
+		print("Invalid command line argument") 
+
 		

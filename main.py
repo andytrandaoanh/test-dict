@@ -33,32 +33,29 @@ def getSingleWord(word, proxies, headers):
 
 
 
-def RunCode(START_NUMBER, proxies, headers):
+def RunCode(START_NUMBER, proxies, headers, mode, location):
+	
 	PATH_IN = "E:/FULLTEXT/DICTIONARY/SPECIALTY/NLTK_Words_List.txt"
+	PATH_DATA_OUT = ''
+	PATH_LOG_OUT = ''
 
+
+	print('Path In:', PATH_IN)
 	#For Home only
-	PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
-	PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
+
+	if (mode == "local"):
+		PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
+		PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
 	
-	#for sharing with office
-	#PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
-	#PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+	elif (mode == "remote"):
+		if (location == "home"):
+			PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+			PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
+		elif (location == "office"): 
+			PATH_DATA_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
+			PATH_LOG_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
 
-	
-	#LOCAL Home or Office only
-	#PATH_DATA_OUT = "E:/FULLTEXT/GOOGLE/RAW"
-	#PATH_LOG_OUT = "E:/FULLTEXT/GOOGLE/LOG"
-	
-	#HOME: for sharing with office
-	#PATH_DATA_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
-	#PATH_LOG_OUT = "C:/Users/Andy Anh/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
-
-	#OFFICE: for sharing with home orm office
-
-	#PATH_DATA_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/RAW"
-	#PATH_LOG_OUT = "C:/Users/Administrator/Dropbox/PROGRAMMING/FULLTEXT/GOOGLE/LOG"
-
-
+	print('\nData Path:', PATH_DATA_OUT, '\nLog Path:', PATH_LOG_OUT)
 
 
 
@@ -101,7 +98,7 @@ def RunCode(START_NUMBER, proxies, headers):
 	sysHand.writeListToFile(status, pathStatusOut)
 
 
-def main(startNumber):
+def main(startNumber, mode, location):
 	#START_NUMBER = 107200
 	START_NUMBER = startNumber 
 	STOP_NUMBER	 = START_NUMBER + 50000
@@ -112,15 +109,40 @@ def main(startNumber):
 	for i in range(START_NUMBER, STOP_NUMBER, STEP_NUMBER):		
 		user_agent = getRamdomUserAgent()		
 		headers = {'User-Agent': user_agent}
-		RunCode(i, proxies, headers)
+		RunCode(i, proxies, headers, mode, location)
 		time.sleep(10)
 
 
 if __name__ == '__main__':
 	try:
-		startNumber = int(sys.argv[1])
-		main(startNumber)
-	except:
-		print("Invalid command line argument") 
+
+		#default argument
+		startNumber = 119000		
+		mode = "local"
+		location = "home"
+
+
+		lenArgs = len(sys.argv)
+		#print('length of argument list:', lenArgs)
+
+		if (lenArgs > 1):
+			startNumber = int(sys.argv[1])			
+		
+		if (lenArgs > 2):
+			if (sys.argv[2] == "local" or sys.argv[2] == "remote"):
+				mode = sys.argv[2]
+
+		if (lenArgs > 3):
+			if (sys.argv[3] == "home" or sys.argv[3] == "office"):
+				location = sys.argv[3]
+
+
+		print('\nstartNumber:', startNumber, '\nmode:', mode, '\nlocation:', location)
+		main(startNumber, mode, location)
+
+
+
+	except Exception as e:
+		print (e)
 
 		
